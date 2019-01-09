@@ -8,66 +8,56 @@
 
 #import <Foundation/Foundation.h>
 #import "AdditionQuestion.h"
+#import "InputHandler.h"
+#import "ScoreKeeper.h"
 #import <string.h>
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
         BOOL gameOn = YES;
-        
+        ScoreKeeper *score = [[ScoreKeeper alloc] init];
         
         while(YES == gameOn){
             
             
-            char *input = malloc(256);
             
-            
-            
-            
-           /* char *input = malloc(256);
-            printf("Type up to 255 characters: ");
-            fgets(input, 255, stdin);
-            
-            NSString *result = [NSString stringWithCString:input
-                                                  encoding:(NSUTF8StringEncoding)];
-            
-            [result stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            
-            NSLog(@"the string is %@", result);
-            */
             AdditionQuestion *aq = [[AdditionQuestion alloc] init];
-            
             
             
             NSLog(@"%@", [aq question]);
             
             
-            
-            fgets(input, 255, stdin);
-            NSString *result = [NSString stringWithCString:input
-                                                  encoding:(NSUTF8StringEncoding)];
-            
-            [result stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            
-            //NSLog(@"You typed is %@", result);
-            
-            int userAnswer = [result intValue];
-            
-            if(strncmp(input, "quit", 4) == 0){
-                //NSLog(@"you typed %@", result);
+            InputHandler *ih = [[InputHandler alloc] init];
+            NSString *userInput = [ih getInputString];
+ 
+            int numberOfPreviousAttempts = [score numberOfAttempts];
+            int newNumberOfAttempts = 1 + numberOfPreviousAttempts;
+            score.numberOfAttempts=newNumberOfAttempts;
+           
+            if([userInput isEqualToString:@"quit"]){
                 gameOn = NO;
-                continue;
-                //break;
+                break;
             }else{
-                NSLog(@"your guess is %d", userAnswer);
+                int userAnswer = [userInput intValue];
+                //NSLog(@"your guess is %d", userAnswer);
                 if(userAnswer == [aq answer]){
                     NSLog(@"Right!");
+                    
+                    
+                    int numberOfPreviousCorrect = [score numberOfCorrect];
+                    int newNumberOfCorrect = 1 + numberOfPreviousCorrect;
+                    score.numberOfCorrect=newNumberOfCorrect;
+                    
+                    
                 }else{
                     NSLog(@"Wrong!");
                 }
             }
             
+            [score printScore];
         }
     }
     return 0;
 }
+

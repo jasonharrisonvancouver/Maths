@@ -17,8 +17,8 @@
     NSString *result = [NSString stringWithCString:input
                                           encoding:(NSUTF8StringEncoding)];
     
-    [result stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
+    result = [result stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    //NSLog(@"you typed %@", result);
     return result;
 }
 

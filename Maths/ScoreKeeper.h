@@ -1,5 +1,5 @@
 //
-//  InputHandler.h
+//  ScoreKeeper.h
 //  Maths
 //
 //  Created by jason harrison on 2019-01-09.
@@ -10,13 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface InputHandler : NSObject
+@interface ScoreKeeper : NSObject
 
-- (NSString *) getInputString;
-    
+@property  int numberOfAttempts;
+@property  int numberOfCorrect;
 
-
-
+- (void)printScore;
 @end
 
 NS_ASSUME_NONNULL_END
