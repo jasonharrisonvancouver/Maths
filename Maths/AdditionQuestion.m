@@ -19,13 +19,6 @@
         _operand2 = arc4random_uniform(100) + 1;
         
         _answer = _operand1 + _operand2;
-        /*
-        NSString *questionPart1 = [NSString stringWithFormat:@"What is %ld", _operand1];
-        NSString *questionPart2 = [NSString stringWithFormat:@" + %ld? ", _operand2];
-        
-        [questionPart1 stringByAppendingString: questionPart2];
-
-         */
         
         
         NSString *part1 = @"What is ";
@@ -36,11 +29,22 @@
         
         _question = [NSString stringWithFormat:@"%@%@%@%@%@", part1, part2, part3, part4, part5];
 
-        
-        //NSLog(@"question is %@", _question);
-        //NSLog(@"r1 is %ld and r2 is %ld and sum is %ld", _operand1 , _operand2, _answer);
+        _startTime = [NSDate date];
     }
     return self;
+}
+
+// overriding getter
+- (NSInteger)answer{
+    
+    _endTime = [NSDate date];
+    return _answer;
+}
+
+- (NSTimeInterval)answerTime{
+    NSTimeInterval interval = round([_endTime timeIntervalSinceDate:_startTime]);
+                               
+    return interval;
 }
 
 @end
