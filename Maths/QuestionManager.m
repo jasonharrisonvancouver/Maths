@@ -23,10 +23,10 @@
 
 -(NSString *)timeOutput{
     double totalTimeSeconds  = 0;
-    double numberOfQuestions = 0;
+    int numberOfQuestions = 0;
     double averageSecondsPerQuestion = 0;
     
-    for (AdditionQuestion *addQuestion in _questions) {
+    for (Question *addQuestion in _questions) {
         NSTimeInterval secondsToAnswer = [addQuestion answerTime];
         
         totalTimeSeconds = totalTimeSeconds + (double)secondsToAnswer ;

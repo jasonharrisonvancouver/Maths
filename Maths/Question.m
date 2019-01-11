@@ -10,4 +10,22 @@
 
 @implementation Question
 
+// overriding getter
+- (NSInteger)answer{
+    
+    _endTime = [NSDate date];
+    return _answer;
+}
+
+- (NSTimeInterval)answerTime{
+    NSTimeInterval interval = round([_endTime timeIntervalSinceDate:_startTime]);
+    
+    return interval;
+}
+
+
+- (void)generateQuestion{
+    // do nothing
+}
+
 @end

@@ -15,36 +15,28 @@
     self = [super init];
     
     if(self != nil){
-        _operand1 = arc4random_uniform(100) + 1;
-        _operand2 = arc4random_uniform(100) + 1;
-        
-        _answer = _operand1 + _operand2;
-        
-        
-        NSString *part1 = @"What is ";
-        NSString *part2 = [NSString stringWithFormat:@"%ld", _operand1];
-        NSString *part3 = @" + ";
-        NSString *part4 = [NSString stringWithFormat:@"%ld", _operand2];
-        NSString *part5 = @"? ";
-        
-        _question = [NSString stringWithFormat:@"%@%@%@%@%@", part1, part2, part3, part4, part5];
-
-        _startTime = [NSDate date];
+        [self generateQuestion ];
     }
     return self;
 }
 
-// overriding getter
-- (NSInteger)answer{
+- (void)generateQuestion{
+    self.operand1 = arc4random_uniform(100) + 1;
+    self.operand2 = arc4random_uniform(100) + 1;
     
-    _endTime = [NSDate date];
-    return _answer;
+    self.answer = self.operand1 + self.operand2;
+    
+    NSString *part1 = @"What is ";
+    NSString *part2 = [NSString stringWithFormat:@"%ld", self.operand1];
+    NSString *part3 = @" + ";
+    NSString *part4 = [NSString stringWithFormat:@"%ld", self.operand2];
+    NSString *part5 = @"? ";
+    
+    self.question = [NSString stringWithFormat:@"%@%@%@%@%@", part1, part2, part3, part4, part5];
+    
+    self.startTime = [NSDate date];
 }
 
-- (NSTimeInterval)answerTime{
-    NSTimeInterval interval = round([_endTime timeIntervalSinceDate:_startTime]);
-                               
-    return interval;
-}
+
 
 @end

@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AdditionQuestion.h"
 #import "InputHandler.h"
 #import "ScoreKeeper.h"
 #import "QuestionManager.h"
+#import "QuestionFactory.h"
 #import <string.h>
 
 int main(int argc, const char * argv[]) {
@@ -20,12 +20,17 @@ int main(int argc, const char * argv[]) {
         ScoreKeeper *score = [[ScoreKeeper alloc] init];
         
         QuestionManager *questionManager = [[QuestionManager alloc] init];
+        QuestionFactory *factory = [[QuestionFactory alloc] init];
         
         while(YES == gameOn){
             
             
             
-            AdditionQuestion *aq = [[AdditionQuestion alloc] init];
+            //AdditionQuestion *aq = [[AdditionQuestion alloc] init];
+            
+            
+            Question *aq = [factory generateRandomQuestion];
+            
             
             [[questionManager questions] addObject:aq];
             

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface QuestionFactory : Question
 
+-(Question *)generateRandomQuestion;
+    
 @end
 
 NS_ASSUME_NONNULL_END
